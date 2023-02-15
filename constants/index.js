@@ -3,6 +3,7 @@ const REGEX_URL = /https?:\/\/(www\.)?[-a-zA-Z0-9:%._~#=]{1,256}\.[a-zA-Z0-9()]{
 const VALIDATION_ERROR = 'Validation failed';
 const allowedCors = [
   'http://localhost:3000',
+  'https://api.awesomemandiplom.nomoredomains.work',
 ];
 
 module.exports = {
