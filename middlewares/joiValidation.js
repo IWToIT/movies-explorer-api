@@ -7,40 +7,48 @@ const validId = (typeId) => celebrate({
   }),
 });
 
-const validAuthName = celebrate({
+const validUserRegister = celebrate({
   body: Joi.object().keys({
     email: Joi.string().email().required(),
     password: Joi.string().required(),
-    name: Joi.string().min(2).max(30),
-    about: Joi.string().min(2).max(30),
-    avatar: Joi.string().regex(REGEX_URL),
+    name: Joi.string().min(2).max(30).required(),
   }),
 });
 
-const validUserInfo = celebrate({
+const validUserLogin = celebrate({
   body: Joi.object().keys({
-    name: Joi.string().required().min(2).max(30),
-    about: Joi.string().required().min(2).max(30),
+    email: Joi.string().email().required(),
+    password: Joi.string().required(),
   }),
 });
 
-const userAvatarValid = celebrate({
+const validUserUpdate = celebrate({
   body: Joi.object().keys({
-    avatar: Joi.string().required().regex(REGEX_URL),
+    email: Joi.string().email().required(),
+    name: Joi.string().min(2).max(30).required(),
   }),
 });
 
-const validDataCard = celebrate({
+const validDataMovie = celebrate({
   body: Joi.object().keys({
-    name: Joi.string().required().min(2).max(30),
-    link: Joi.string().required().regex(REGEX_URL),
+    country: Joi.string().required(),
+    director: Joi.string().required(),
+    duration: Joi.number().required(),
+    year: Joi.string().required(),
+    description: Joi.string().required(),
+    image: Joi.string().regex(REGEX_URL).required(),
+    trailerLink: Joi.string().regex(REGEX_URL).required(),
+    thumbnail: Joi.string().regex(REGEX_URL).required(),
+    movieId: Joi.number().required(),
+    nameRU: Joi.string().required(),
+    nameEN: Joi.string().required(),
   }),
 });
 
 module.exports = {
   validId,
-  validAuthName,
-  validUserInfo,
-  userAvatarValid,
-  validDataCard,
+  validUserRegister,
+  validUserLogin,
+  validUserUpdate,
+  validDataMovie,
 };

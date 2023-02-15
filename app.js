@@ -10,6 +10,7 @@ const { requestLogger, errorLogger } = require('./middlewares/logger');
 const rateLimit = require('./middlewares/rateLimit');
 
 const { PORT = 3000, MONGO_URL = 'mongodb://127.0.0.1:27017/filmsdb' } = process.env;
+mongoose.set('strictQuery', true);
 
 const app = express();
 
@@ -19,6 +20,7 @@ app.use(cookieParser());
 mongoose.connect(MONGO_URL, {
   useNewUrlParser: true,
 });
+
 app.use(requestLogger);
 
 app.use(helmet());
