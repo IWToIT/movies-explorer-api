@@ -9,7 +9,7 @@ const centralizedErrorHandler = require('./middlewares/centralizedErrorHandler')
 const { requestLogger, errorLogger } = require('./middlewares/logger');
 const rateLimit = require('./middlewares/rateLimit');
 
-const { PORT = 3000, MONGO_URL = 'mongodb://127.0.0.1:27017/filmsdb' } = process.env;
+const { PORT = 3000, MONGO_URL = 'mongodb://127.0.0.1:27017/bitfilmsdb' } = process.env;
 mongoose.set('strictQuery', true);
 
 const app = express();

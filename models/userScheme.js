@@ -14,13 +14,11 @@ const userSchema = new mongoose.Schema({
     type: String,
     required: true,
     select: false,
-    default: '',
   },
   name: {
     type: String,
     minlength: 2,
     maxlength: 30,
-    default: '',
     required: true,
   },
 });
