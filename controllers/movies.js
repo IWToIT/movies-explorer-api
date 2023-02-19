@@ -10,12 +10,8 @@ const NotFoundError = require('../errors/NotFoundError');
 const DublicateKeyError = require('../errors/DublicateKeyError');
 
 module.exports.getMovies = (req, res, next) => {
-  Movies.find({})
-    .populate(['owner'])
-    .then((movies) => {
-      const moviesForUser = movies.filter((movie) => movie.owner.equals(req.user._id));
-      res.send(moviesForUser);
-    })
+  Movies.find({ owner: req.user._id })
+    .then(res.send)
     .catch(next);
 };
 
@@ -54,9 +50,6 @@ module.exports.saveMovie = (req, res, next) => {
         .catch((err) => {
           if (err.message === VALIDATION_ERROR) {
             return next(new BadReqError('Переданы некорректные данные для добавления фильма.'));
-          }
-          if (err.code === 11000) {
-            return next(new DublicateKeyError('Такой фильм уже существует.'));
           }
           return next(err);
         });
