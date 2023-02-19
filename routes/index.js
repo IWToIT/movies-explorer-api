@@ -15,8 +15,8 @@ router.get('/crash-test', () => {
 
 router.post('/signup', validUserRegister, createUser);
 router.post('/signin', validUserLogin, login);
-router.delete('/signout', logout);
 router.use(auth);
+router.delete('/signout', logout);
 router.use('/movies', require('./movies'));
 router.use('/users', require('./users'));
 
