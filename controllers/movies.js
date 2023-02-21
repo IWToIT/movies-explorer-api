@@ -7,11 +7,10 @@ const {
 const BadReqError = require('../errors/BadReqError');
 const ForbiddenError = require('../errors/ForbiddenError');
 const NotFoundError = require('../errors/NotFoundError');
-const DublicateKeyError = require('../errors/DublicateKeyError');
 
 module.exports.getMovies = (req, res, next) => {
   Movies.find({ owner: req.user._id })
-    .then(res.send)
+    .then((movies) => res.send(movies))
     .catch(next);
 };
 
